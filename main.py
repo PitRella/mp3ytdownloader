@@ -35,7 +35,14 @@ def download_mp4():
             with youtube_dl.YoutubeDL({}) as ydl:
                 print(mp3_songs)
                 print('--Started downloading songs--')
-                ydl.download(mp3_songs)
+                for song in mp3_songs:
+                    sn_l = [song]
+                    print(f'Downloading {song}')
+                    try:
+                        ydl.download(sn_l)
+                    except Exception as e:
+                        print(f'Error downloading {e}')
+                        continue
         else:
             print(f'No songs in file download.txt')
 
